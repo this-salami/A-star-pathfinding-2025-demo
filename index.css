@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #27292c;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    
+    overflow: hidden;
+}
+
+svg {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: yellow;
+}
+
+@keyframes newWall{
+    0% {
+        width: calc(var(--cell-size) + 10px);
+        height: calc(var(--cell-size) + 10px);
+        transform: translate(-5px, -5px);
+    }
+    100% {
+        width: var(--cell-size);
+        height: var(--cell-size);
+        transform: translate(0px, 0px);
+    }
+}
+
+svg rect {
+    position: relative;
+    /*
+    width: 30px;
+    height: 30px;
+    */
+    width: var(--cell-size);
+    height: var(--cell-size);
+    outline: 1px solid black;
+    fill: white;
+}
+
+svg rect[data-state="target"] {
+    fill: red;
+}
+
+svg rect[data-state="start"] {
+    fill: green;
+}
+
+svg rect[data-state="wall"] {
+    fill: grey;
+    animation: newWall 100ms ease-in-out 0s 1;
+}
+
+svg rect[data-state="path"] {
+    fill: rgb(0, 200, 200);
+}
+
+svg rect[data-state="checked"] {
+    fill: lightblue;
+}
+
+svg path {
+    fill: none;
+    stroke: yellow;
+    stroke-width: 3px;
+    
+    pointer-events: none;
+}
